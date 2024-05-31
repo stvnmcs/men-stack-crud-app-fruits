@@ -24,8 +24,10 @@ app.get("/", async (req, res) => {
     res.render("index.ejs");
 });
 
-app.get("/fruits", (req, res) => {
-    res.send("Welcome to the index page!");
+app.get("/fruits", async (req, res) => {
+    const allFruits = await Fruit.find();
+    console.log(allFruits);
+    res.render("fruits/index.ejs", { fruits: allFruits });
 });
   
 app.get("/fruits/new", (req, res) => {
